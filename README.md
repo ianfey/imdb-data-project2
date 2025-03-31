@@ -1,8 +1,10 @@
 ## IMDb Data Warehouse Project
 This project utilizes the IMDb dataset. The purpose of the project is to analyze and model film metadata, using a star schema, for the purpose of querying and deriving insights.
 Data Source
-## IMDb Datasets: https://www.imdb.com/interfaces/
-## Files Used: title.basics.tsv, title.ratings.tsv, title.crew.tsv, name.basics.tsv
+## IMDb Datasets: 
+https://www.imdb.com/interfaces/
+## Files Used: 
+title.basics.tsv, title.ratings.tsv, title.crew.tsv, name.basics.tsv
 ## Data Dictionary 
 Available Here: https://www.imdb.com/interfaces/
 ## Project Overview
