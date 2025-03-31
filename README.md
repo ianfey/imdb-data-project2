@@ -14,11 +14,3 @@ This project draws on the publicly available IMDb dataset. The main goal was to 
 
 The .tsv files provided by IMDb were used as raw data sources and cleaned using an ETL process, and structured into a star schema. The star schema referenced a central fact table with key information such as average ratings and votes, along with several dimension tables containing movie metadata, crew information, and biographic data.
 
-## The Project Also Contains:
-A GitHub repository for version control and collaborative development
-Documented data model with explanation and diagram
-Architectural diagram indicating data flow and system participation
-Clear breakdown of business and functional requirements
-
-This framework serves as a basis for future homework assignments engaging in more complicated analysis and visualizations of data, using the IMDb dataset as the source of data.
-
