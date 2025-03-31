@@ -1,4 +1,4 @@
-Functional Requirements
+## Functional Requirements
 
 1) The system must allow for querying the details of a film based on its title, release date, or genre.
 
