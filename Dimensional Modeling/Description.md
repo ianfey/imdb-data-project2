@@ -1,5 +1,4 @@
-Dimensional Modeling Description
-The IMDb data warehouse is structured using a star schema to support efficient analytical queries. This model separates quantitative metrics (stored in the fact table) from descriptive information (stored in dimension tables), allowing for scalable, flexible analysis.
+The IMDb data warehouse is structured using a star schema to support efficient analytical queries. This model separates quantitative metrics (stored in the fact table) from descriptive information (stored in dimension tables), allowing for scalable and flexible analysis.
 
 At the center is the fact_movies table, which captures measurable data such as the number of user votes and average ratings for each movie. Each entry in the fact table is uniquely identified by a surrogate key and references several dimension tables through foreign keys.
 
