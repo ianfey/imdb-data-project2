@@ -27,5 +27,4 @@ imdb-data-project/
 ## Data Dictionary
 Refer to: https://www.imdb.com/interfaces/
 
-## Authors
-- Your Name (update here)
+
