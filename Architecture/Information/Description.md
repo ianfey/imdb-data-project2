@@ -77,9 +77,3 @@ Dashboards provide:
 QuickSight connects directly to Redshift and uses date filtering controls for dynamic visuals.
 """
 
-# Save as Markdown file
-output_path = Path("/mnt/data/imdb_info_architecture.md")
-output_path.write_text(md_content)
-
-output_path.name
-
