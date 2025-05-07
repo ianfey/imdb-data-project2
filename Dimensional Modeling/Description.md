@@ -1,35 +1,33 @@
-The IMDb data warehouse is structured using a star schema to support efficient analytical queries. This model separates quantitative metrics (stored in the fact table) from descriptive information (stored in dimension tables), allowing for scalable and flexible analysis.
+The IMDb data warehouse is structured using a star schema. The model separates facts from context. The model separates measures from descriptions. The model creates clarity, consistency, and speed.
 
-At the center is the fact_movies table, which captures measurable data such as the number of user votes and average ratings for each movie. Each entry in the fact table is uniquely identified by a surrogate key and references several dimension tables through foreign keys.
+At its center is the fact_movies table. It stores key metrics such as vote counts and rating averages. It identifies each record with a surrogate key. It connects to dimension tables through foreign keys.
 
 Fact Table: fact_movies
-fact_id (surrogate primary key)
 
-title_id → links to dim_titles
+fact_id: surrogate primary key
 
-rating_id → links to dim_ratings
+title_id: joins to dim_titles
 
-crew_id → links to dim_crew
+rating_id: joins to dim_ratings
 
-numVotes, averageRating
+crew_id: joins to dim_crew
 
-This table holds the core metrics used in analysis, such as total user votes and the average rating per movie.
+numVotes, averageRating: core performance indicators
 
 Dimension Tables
-dim_titles: Contains movie title, genre, year, and runtime
 
-dim_ratings: Stores rating and vote count data
+dim_titles: provides the title, the genre, the year, and the runtime
 
-dim_crew: Maps each movie to its director(s) and writer(s)
+dim_ratings: includes the rating value and total votes
 
-dim_people: Includes biographical details such as name, birth year, and profession
+dim_crew: links each film to its director and writer
 
-This model enables analysis across multiple perspectives, including:
+dim_people: lists name, birth year, and profession
 
-Top-rated movies by genre and decade
+The schema enables multiple perspectives. The schema enables comparisons across time. The schema enables insight into individuals and groups.
 
-Comparison of average ratings between directors
+You can identify top-rated films by genre. You can compare directors across decades. You can trace a writer’s career over time. You can observe changes in audience feedback.
 
-Tracking a specific director or writer’s contributions over time
+Surrogate keys ensure referential consistency. Foreign keys reduce redundancy. The design improves query speed. The structure improves analytical flexibility.
 
-The use of surrogate keys ensures consistency and simplifies joins between tables. The star schema provides the flexibility to answer a variety of business questions quickly and accurately.
+This model is built for scale. This model is built for insight. This model is built for action.
