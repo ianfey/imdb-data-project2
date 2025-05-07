@@ -1,0 +1,24 @@
+                         +------------------+
+                         |   dim_title      |
+                         |------------------|
+                         | tconst (PK)      |
+                         | titleType        |
+                         | primaryTitle     |
+                         | originalTitle    |
+                         | isAdult          |
+                         | startYear        |
+                         | endYear          |
+                         | runtimeMinutes   |
+                         | genres           |
+                         +--------^---------+
+                                  |
+                                  |
++-------------+        +---------+----------+        +------------------+
+|  dim_name   |<--------+     fact_ratings   +------->   dim_crew        |
+|-------------|        |--------------------|        |------------------|
+| nconst (PK) |        | tconst (PK)        |        | tconst (FK)      |
+| primaryName |        | averageRating      |        | directors        |
+| birthYear   |        | numVotes           |        | writers          |
+| deathYear   |        +--------------------+        +------------------+
+| ...         |
++-------------+
