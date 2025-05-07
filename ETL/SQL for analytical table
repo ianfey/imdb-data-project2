@@ -1,0 +1,31 @@
+CREATE OR REPLACE VIEW imdb_analytics_viewv2 AS
+SELECT
+    tb.tconst,
+    tb.originaltitle,
+    tb.primarytitle,
+    tb.titletype,
+    tb.startyear,
+    tb.endyear,
+    tb.runtimeminutes,
+    tb.genre_1,
+    tb.genre_2,
+    tb.genre_3,
+
+    r.averagerating,
+    r.numvotes,
+
+    tc.directors AS director_nconst,
+    d.firstname AS director_firstname,
+    d.lastname AS director_lastname,
+    d.profession1 AS director_profession1,
+
+    tc.writers AS writer_nconst,
+    w.firstname AS writer_firstname,
+    w.lastname AS writer_lastname,
+    w.profession1 AS writer_profession1
+
+FROM cleaned_title_basics tb
+LEFT JOIN cleaned_ratings r ON tb.tconst = r.tconst
+LEFT JOIN cleaned_title_crew tc ON tb.tconst = tc.tconst
+LEFT JOIN cleaned_name_basicv2 d ON tc.directors = d.nconst
+LEFT JOIN cleaned_name_basicv2 w ON tc.writers = w.nconst;
