@@ -1,74 +1,91 @@
-# IMDb Data Architecture – CIS4400 Project
+IMDb Data Architecture – CIS4400 Project
+Source Systems
+IMDb offers data. IMDb serves structure. IMDb updates daily.
 
-## Source Systems
-IMDb offers. IMDb serves. IMDb updates.
-
-The dataset comes in `.tsv.gz` format. It uses tabs. It uses UTF-8 encoding. It updates daily.
+The dataset arrives in .tsv.gz format. It uses tabs for separation. It uses UTF-8 for encoding.
 
 Included files:
-- `title.basics.tsv.gz`: types, years, genres
-- `title.ratings.tsv.gz`: averages, votes
-- `title.crew.tsv.gz`: directors, writers
-- `name.basics.tsv.gz`: names, roles
 
-Each file is downloaded by script. Each file is stored on Azure. Each file is timestamped.
+title.basics.tsv.gz: film types, release years, genres
 
-## Ingestion Layer
-**Language**: Python 3.11  
-**Libraries Used**:
-- `requests`, `os` – for fetching and file paths
-- `pandas` – for loading and transforming
-- `azure-storage-blob` – for pushing to cloud
+title.ratings.tsv.gz: average ratings, vote counts
 
-The process retrieves. The process unpacks. The process uploads.
+title.crew.tsv.gz: director links, writer links
 
-Raw and cleaned versions are saved. Versions are sorted by date. Versions are preserved for audit.
+name.basics.tsv.gz: person names, professional roles
 
-## Storage Layer
-**Platform**: Azure  
-**Service**: Blob Storage (Hot Tier)
+Each file is retrieved by script. Each file is stored on Azure. Each file includes a timestamp.
 
-There are two containers. One holds raw files. One holds cleaned CSVs.
+Ingestion Layer
+Language: Python 3.11
+Libraries Used:
 
-**Filenames** follow a structure:
-- Raw: `2025-05-06/raw/title.basics.tsv.gz`
-- Cleaned: `2025-05-06/transformed/title.basics_cleaned.csv`
+requests, os – to fetch and to organize
 
-No conflicts. No ambiguity. No gaps.
+pandas – to load and to clean
 
-## Processing Layer
-**Pipeline Type**: ETL – extract, transform, load
+azure-storage-blob – to send and to archive
 
-We drop incomplete rows. We reformat all dates. We add calculated fields.  
-We split multi-value entries. We join across foreign keys.
+The pipeline retrieves the files. The pipeline decompresses the archives. The pipeline uploads the results.
 
-Every transformation is logged. Every step is validated. Every file is schema-aligned.
+Raw and cleaned files are saved. Raw and cleaned versions are dated. Raw and cleaned records are preserved.
 
-Redshift stores the final outputs. Redshift stores them by table. Redshift stores them for analytics.
+Storage Layer
+Platform: Azure
+Service: Blob Storage – Hot Tier
 
-## Semantic Layer
-**Grain**: one row per title per rating
+Two containers are created. One stores raw data. One stores transformed outputs.
 
-**Fact Table**: `fact_ratings`  
-- Primary key: `fact_id`  
-- Foreign key: `tconst`  
-- Measures:
-  - `average_rating`
-  - `num_votes`
+File Naming Structure:
 
-**Dimensions**:
-- `dim_title` — genres, runtime, release year
-- `dim_people` — individuals from cast or crew
-- `dim_crew` — links to directors, links to writers
+Raw: 2025-05-06/raw/title.basics.tsv.gz
 
-Each key is synthetic. Each table is related. Each row is traceable.
+Cleaned: 2025-05-06/transformed/title.basics_cleaned.csv
 
-## Presentation Layer
-**Tool**: AWS QuickSight
+There are no duplicates. There are no naming errors. There are no missed files.
 
-The dashboards compare. The dashboards visualize. The dashboards respond.
+Processing Layer
+Pipeline Type: ETL — extract, transform, load
 
-You see ratings by genre. You see trends by decade. You see spikes by country.  
-You explore popular directors. You explore genre frequency. You explore vote volume.
+We remove missing records. We reformat all dates. We compute derived fields.
+We split compound values. We join foreign references. We align each schema.
 
-QuickSight connects live. QuickSight reads from Redshift. QuickSight powers decisions.
+Every step is recorded. Every step is validated. Every step is repeatable.
+
+Redshift stores final outputs. Redshift organizes them by table. Redshift readies them for analysis.
+
+Semantic Layer
+Grain: one row per title per rating
+
+Fact Table: fact_ratings
+
+Primary Key: fact_id
+
+Foreign Key: tconst
+
+Metrics:
+
+average_rating
+
+num_votes
+
+Dimension Tables:
+
+dim_title — genres, durations, release years
+
+dim_people — individuals in cast or crew
+
+dim_crew — mappings to directors and writers
+
+Each table is linked. Each key is synthetic. Each row is traceable.
+
+Presentation Layer
+Tool: AWS QuickSight
+
+The dashboards show trends. The dashboards expose gaps. The dashboards surface patterns.
+
+You view ratings by category. You view changes by decade. You view peaks by country.
+You analyze director popularity. You analyze genre distribution. You analyze audience engagement.
+
+QuickSight connects directly. QuickSight queries Redshift. QuickSight drives insight.
+
