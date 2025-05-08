@@ -1,0 +1,34 @@
+| **Source File**  | **Source Field** | **Target Column**               | **Transformation Description**     |
+| ---------------- | ---------------- | ------------------------------- | ---------------------------------- |
+| title.basics.tsv | `tconst`         | `tconst`                        | As-is                              |
+| title.basics.tsv | `titleType`      | `titletype`                     | As-is                              |
+| title.basics.tsv | `primaryTitle`   | `primarytitle`                  | As-is                              |
+| title.basics.tsv | `originalTitle`  | `originaltitle`                 | As-is                              |
+| title.basics.tsv | `isAdult`        | `isadult`                       | Converted to string if needed      |
+| title.basics.tsv | `startYear`      | `startyear`                     | Null if `\N`; stored as string     |
+| title.basics.tsv | `endYear`        | `endyear`                       | Null if `\N`; stored as string     |
+| title.basics.tsv | `runtimeMinutes` | `runtimeminutes`                | Null if `\N`; stored as string     |
+| title.basics.tsv | `genres`         | `genre_1`, `genre_2`, `genre_3` | Split on comma into up to 3 genres |
+
+| **Source File**   | **Source Field** | **Target Column** | **Transformation Description** |
+| ----------------- | ---------------- | ----------------- | ------------------------------ |
+| title.ratings.tsv | `tconst`         | `tconst`          | As-is                          |
+| title.ratings.tsv | `averageRating`  | `averagerating`   | Cast to `REAL`                 |
+| title.ratings.tsv | `numVotes`       | `numvotes`        | Cast to `INTEGER`              |
+
+| **Source File** | **Source Field** | **Target Column** | **Transformation Description** |
+| --------------- | ---------------- | ----------------- | ------------------------------ |
+| title.crew\.tsv | `tconst`         | `tconst`          | As-is                          |
+| title.crew\.tsv | `directors`      | `directors`       | Only first ID before comma     |
+| title.crew\.tsv | `writers`        | `writers`         | Only first ID before comma     |
+
+| **Source File** | **Source Field**    | **Target Column**   | **Transformation Description**                     |
+| --------------- | ------------------- | ------------------- | -------------------------------------------------- |
+| name.basics.tsv | `nconst`            | `nconst`            | As-is                                              |
+| name.basics.tsv | `primaryName`       | *dropped*           | Split into `firstname`, `lastname` (drop original) |
+|                 |                     | `firstname`         | First part of `primaryName` split                  |
+|                 |                     | `lastname`          | Last part of `primaryName` split                   |
+| name.basics.tsv | `birthYear`         | `birthyear`         | Null if `\N`; stored as string                     |
+| name.basics.tsv | `deathYear`         | `deathyear`         | Null if `\N`; stored as string                     |
+| name.basics.tsv | `primaryProfession` | `primaryprofession` | As-is                                              |
+| name.basics.tsv | `knownForTitles`    | `knownfortitles`    | As-is                                              |
