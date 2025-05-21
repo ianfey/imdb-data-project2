@@ -12,13 +12,17 @@
                          | genres           |
                          +--------^---------+
                                   |
+                                ______
                                   |
+                                  |
+                                /|\
 +-------------+        +---------+----------+        +------------------+
-|  dim_name   |<--------+     fact_ratings   +------->   dim_crew        |
+|  dim_name   |/|\----|   fact_ratings       |----/|\   dim_crew        |
 |-------------|        |--------------------|        |------------------|
-| nconst (PK) |        | tconst (PK)        |        | tconst (FK)      |
+| nconst (PK) |        | tconst (PK)        |        |  tcnonst(PK)     | 
+|             |        |    nconst(FK)      |        | nconst (FK)      |
 | primaryName |        | averageRating      |        | directors        |
 | birthYear   |        | numVotes           |        | writers          |
 | deathYear   |        +--------------------+        +------------------+
-| ...         |
+|             |
 +-------------+
